@@ -10,7 +10,8 @@ from flasgger import Swagger, swag_from, LazyString, LazyJSONEncoder
 from db import (
     create_connection, insert_dictionary_to_db, 
     insert_result_to_db, show_cleansing_result,
-    insert_upload_result_to_db, insert_abusive_occurence_to_db
+    insert_upload_result_to_db, insert_abusive_occurence_to_db, 
+    insert_upload_result_deep_learning_to_db
 )
 from cleansing_function import (
     text_cleansing, cleansing_files,
@@ -156,8 +157,7 @@ def deep_learning_file():
     df_upload = pd.read_csv(uploaded_file, encoding="latin-1")
     # Read csv file to dataframe then cleansing
     start = perf_counter()
-    df_cleansing = cleansing_files(df_upload)
-    df_sentiment = deep_learning_upload(df_cleansing)
+    df_sentiment = deep_learning_upload(df_upload)
     end = perf_counter()
     time_elapse = end - start
     print(f"Processing time: {time_elapse} second")
@@ -165,10 +165,10 @@ def deep_learning_file():
     data_kemunculan_kata_abusive = abusive_occurence
     # Upload result to database
     db_connection = create_connection()
-    insert_upload_result_to_db(db_connection, df_cleansing, df_sentiment)
+    insert_upload_result_deep_learning_to_db(db_connection, df_sentiment)
     insert_abusive_occurence_to_db(db_connection, data_kemunculan_kata_abusive)
     print("Upload result to database success!")
-    print_result = df_cleansing[["raw_text", "clean_text","sentiment"]]
+    print_result = df_sentiment[["raw_text", "clean_text", "sentiment"]]
     result_response = print_result.T.to_dict()
     return jsonify(result_response)
 
