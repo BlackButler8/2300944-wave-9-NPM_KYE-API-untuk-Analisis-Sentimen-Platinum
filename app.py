@@ -10,7 +10,7 @@ from db import (
     insert_result_to_db, show_sentiment_result,
     insert_upload_result_to_db
 )
-from cleansing_function import (
+from neural_network import (
     text_cleansing, neural_sentiment,
     neural_files
 )
