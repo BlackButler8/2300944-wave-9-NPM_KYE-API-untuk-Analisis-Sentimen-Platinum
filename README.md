@@ -4,10 +4,11 @@ Langkah-langkah dalam penggunaan :
 1. Buat environtment python
 2. Instal library pada requirement.txt pada environtment python yang telah dibuat
 3. Download model LSTM pada link gdrive dibawah
-4. run file python dengan nama "app.py"
-5. klik server yang terdapat pada terminal ketika menjalankan file python "app.py"
-6. tambahkan /docs pada bagian ip server
-7. API dapat digunakan
+4. Taruh file model di folder yang sama dengan file "app.py"
+5. run file python dengan nama "app.py"
+6. klik server yang terdapat pada terminal ketika menjalankan file python "app.py"
+7. tambahkan /docs pada bagian ip server
+8. API dapat digunakan
 
 
 
